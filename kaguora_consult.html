@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaguora Consult Limited</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+  <header>
+    <h1>Kaguora Consult Limited</h1>
+    <p>Mental Health | Wellness | Coaching | Therapy</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#blog">Blog</a>
+      <a href="#booking">Booking</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We nurture mental wellness through therapy, coaching, and mindfulness. Our team provides personalized support to help you thrive.</p>
+  </section>
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Individual & Group Therapy</li>
+      <li>Meditation & Mindfulness Coaching</li>
+      <li>Life & Wellness Coaching</li>
+      <li>Workshops & Events</li>
+    </ul>
+  </section>
+  <section id="blog">
+    <h2>Wellness Blog</h2>
+    <h3>5 Ways to Manage Stress Naturally</h3>
+    <p>Breathe deeply, journal often, move your body — and connect with nature.</p>
+    <h3>Why Talking Helps: Benefits of Therapy</h3>
+    <p>Therapy creates space to be heard, understood, and supported without judgment.</p>
+  </section>
+  <section id="booking">
+    <h2>Book a Session</h2>
+    <p>Booking with EasyPay + M-Pesa coming soon.</p>
+    <button onclick="alert('Booking simulation. Payments can be made via our tel no. 0791616304')">Book Now</button>
+  </section>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="alert('Message sent! We will get back to you soon.'); return false;">
+      <input type="text" placeholder="Your Name" required /><br />
+      <input type="email" placeholder="Your Email" required /><br />
+      <textarea placeholder="Your Message" required></textarea><br />
+      <button type="submit">Send</button>
+    </form>
+  </section>
+  <script>
+  // Form submission handling
+  document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Simulate form submission (replace with actual API call)
+    const submitBtn = document.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Booking...';
+    submitBtn.disabled = true;
+    
+    setTimeout(() => {
+      submitBtn.textContent = 'Booked Successfully!';
+      submitBtn.style.backgroundColor = 'var(--success)';
+      
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        this.reset();
+        submitBtn.textContent = 'Book Session';
+        submitBtn.disabled = false;
+        submitBtn.style.backgroundColor = 'var(--primary)';
+      }, 2000);
+    }, 1500);
+  });
+
+  // Add smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+  // Testimonial slider
+let currentTestimonial = 0;
+const testimonials = document.querySelectorAll('.testimonial');
+
+function showTestimonial(index) {
+  testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+  testimonials[index].classList.add('active');
+}
+
+setInterval(() => {
+  currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+  showTestimonial(currentTestimonial);
+}, 5000);
+</script>
+<section class="testimonials">
+  <h2>What Our Clients Say</h2>
+  <div class="testimonial-slider">
+    <div class="testimonial active">
+      <p>"This therapy changed my life. Highly recommended!"</p>
+      <span>- Dennis Mbugua.</span>
+    </div>
+    <div class="testimonial">
+      <p>"Professional and caring therapists."</p>
+      <span>- Mark T.</span>
+    </div>
+  </div>
+</section>
+  <footer>
+    <p>&copy; 2025 Kaguora Consult Limited. All rights reserved.</p>
+  </footer>
+</body>
+</html>
