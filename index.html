@@ -43,16 +43,67 @@
   <section id="booking">
     <h2>Book a Session</h2>
     <p>Booking with EasyPay + M-Pesa coming soon.</p>
-    <button onclick="alert('Booking simulation. Payments can be made via our tel no. 0791616304')">Book Now</button>
+    <button id="flw-pay-button" class="booking-btn">Book Consultation (Pay via M-Pesa)</button>
+    <div id="payment-form" style="display:none;">
+  <h3>Enter Your Details</h3>
+  <input type="email" id="customer-email" placeholder="Your Email" required>
+  <input type="tel" id="customer-phone" placeholder="2547XXXXXXXX" required>
+  <button id="confirm-payment">Proceed to M-Pesa</button>
+</div>
+
+<script>
+document.getElementById("flw-pay-button").addEventListener("click", function() {
+  document.getElementById("payment-form").style.display = "block";
+});
+
+document.getElementById("confirm-payment").addEventListener("click", function() {
+  const email = document.getElementById("customer-email").value;
+  const phone = document.getElementById("customer-phone").value;
+
+  if (!email || !phone) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  FlutterwaveCheckout({
+    public_key: "FLWPUBK_TEST-XXXXXXXXXXXXXXXXXXXX",
+    tx_ref: "KC-" + Date.now(),
+    amount: 1000,
+    currency: "KES",
+    payment_options: "mpesa",
+    customer: {
+      email: email,
+      phone_number: phone,
+      name: "Kaguora Client",
+    },
+    callback: function(response) {
+      if (response.status === "successful") {
+        window.location.href = "/thank-you.html?tx_ref=" + response.tx_ref;
+      }
+    }
+  });
+});
+</script>
   </section>
   <section id="contact">
     <h2>Contact Us</h2>
-    <form onsubmit="alert('Message sent! We will get back to you soon.'); return false;">
-      <input type="text" placeholder="Your Name" required /><br />
-      <input type="email" placeholder="Your Email" required /><br />
-      <textarea placeholder="Your Message" required></textarea><br />
-      <button type="submit">Send</button>
-    </form>
+    <form 
+  action="https://formsubmit.co/wambuibrenda754@gmail.com" 
+  method="POST"
+  class="contact-form"
+>
+  <input type="hidden" name="_subject" value="New Consultation Request">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value="https://mbuguado.github.io/Kaguora-consult/thank-you.html">
+  
+  <!-- Your existing form fields -->
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <input type="tel" name="phone" placeholder="Your Phone Number" required>
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  
+  <button type="submit" class="submit-btn">Send Message</button>
+</form>
   </section>
   <script>
   // Form submission handling
