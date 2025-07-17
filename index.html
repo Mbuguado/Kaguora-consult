@@ -87,22 +87,18 @@ document.getElementById("confirm-payment").addEventListener("click", function() 
   </section>
   <section id="contact">
     <h2>Contact Us</h2>
-    <form 
-  action="https://formsubmit.co/wambuibrenda754@gmail.com" 
-  method="POST"
-  class="contact-form"
->
-  <input type="hidden" name="_subject" value="New Consultation Request">
+    <form action="https://formsubmit.co/blackmanking30@gmail.com" method="POST">
+  <!-- Required hidden fields -->
+  <input type="hidden" name="_subject" value="New Kaguora Consult Message">
   <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_next" value="https://mbuguado.github.io/Kaguora-consult/thank-you.html">
+  <input type="hidden" name="_captcha" value="false">
   
-  <!-- Your existing form fields -->
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <input type="tel" name="phone" placeholder="Your Phone Number" required>
-  <textarea name="message" placeholder="Your Message" required></textarea>
+  <!-- Your form fields -->
+  <input type="text" name="name" required>
+  <input type="email" name="email" required>
+  <textarea name="message" required></textarea>
   
-  <button type="submit" class="submit-btn">Send Message</button>
+  <button type="submit">Send</button>
 </form>
   </section>
   <script>
